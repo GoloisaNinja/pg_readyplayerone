@@ -26,7 +26,7 @@ function App() {
         starting_mp: 0
     }
     const [player, setPlayer] = useState<Player>(emptyPlayer);
-    const [message, setMessage] = useState<string>("");
+    const [message, setMessage] = useState<string>("Get an avatar to see detail grid");
     const getAvatar = async () => {
         const randomID = Math.floor(Math.random() * 4) + 1;
         try {
@@ -34,6 +34,7 @@ function App() {
             setPlayer(res.data[0])
         } catch(e: any) {
             console.log(e)
+            setMessage(e.message);
         }
     }
   return (
@@ -91,7 +92,7 @@ function App() {
             </main>
         ) : (
             <div className={styles.app_empty}>
-                <h3>Get an avatar to see detail grid</h3>
+                <h3>{message}</h3>
             </div>
         )}
 
